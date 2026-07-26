@@ -1,7 +1,7 @@
 FROM node:22-alpine AS frontend-build
 WORKDIR /build/frontend
 RUN corepack enable && corepack prepare pnpm@10.15.0 --activate
-COPY frontend/package.json frontend/pnpm-lock.yaml ./
+COPY frontend/package.json frontend/pnpm-lock.yaml frontend/.npmrc ./
 RUN HUSKY=0 pnpm install --frozen-lockfile
 COPY frontend/ ./
 RUN pnpm build
