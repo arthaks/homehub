@@ -1,0 +1,12 @@
+[Unit]
+Description=Refresh HomeHub status every 15 seconds
+
+[Timer]
+OnBootSec=10s
+OnUnitActiveSec=15s
+AccuracySec=2s
+Persistent=true
+Unit=homehub-collector.service
+
+[Install]
+WantedBy=timers.target

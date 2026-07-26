@@ -1,0 +1,13 @@
+.git
+.github
+**/.DS_Store
+**/__pycache__
+**/.pytest_cache
+**/.ruff_cache
+**/node_modules
+**/dist
+**/.venv
+frontend/.git
+collector
+deploy
+docs

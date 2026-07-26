@@ -1,0 +1,30 @@
+services:
+  homehub:
+    image: ${HOMEHUB_IMAGE:-ghcr.io/arthaks/homehub:main}
+    container_name: homehub
+    restart: unless-stopped
+    ports:
+      - "192.168.0.9:8080:8080"
+    volumes:
+      - /var/lib/homehub:/data/status:ro
+      - ./config:/app/config:ro
+    environment:
+      HOMEHUB_STATUS_FILE: /data/status/status.json
+      HOMEHUB_CONFIG_FILE: /app/config/homehub.yaml
+      TZ: Asia/Shanghai
+    read_only: true
+    tmpfs:
+      - /tmp:size=16m,mode=1777
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    pids_limit: 100
+    mem_limit: 256m
+    cpus: 1.0
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8080/api/health', timeout=3)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s

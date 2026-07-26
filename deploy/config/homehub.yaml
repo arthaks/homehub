@@ -1,0 +1,26 @@
+server:
+  serverDisplayName: Home Server
+  timezone: Asia/Shanghai
+  refreshIntervalSeconds: 15
+
+links:
+  - id: mihomo
+    name: Mihomo Dashboard
+    url: http://192.168.0.9:9090/ui/
+    category: infrastructure
+    description: 代理节点和连接状态
+  - id: github
+    name: HomeHub Repository
+    url: https://github.com/arthaks/homehub
+    category: development
+    description: 源代码仓库
+  - id: actions
+    name: GitHub Actions
+    url: https://github.com/arthaks/homehub/actions
+    category: development
+    description: CI/CD 执行记录
+  - id: ghcr
+    name: GHCR Package
+    url: https://github.com/arthaks/homehub/pkgs/container/homehub
+    category: development
+    description: HomeHub OCI 镜像
