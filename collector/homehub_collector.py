@@ -164,7 +164,7 @@ def application_status() -> list[dict[str, Any]]:
         "id": "homehub",
         "name": "HomeHub",
         "status": "healthy",
-        "url": "http://192.168.0.9:8080",
+        "url": "http://192.168.0.9:8088",
     }
     if version_file.exists():
         try:
