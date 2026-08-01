@@ -158,13 +158,13 @@ def subscription_details(services: list[dict[str, Any]]) -> None:
     target["detail"] = f"last={last_result}" + (f", {timestamp}" if timestamp else "")
 
 
-def application_status() -> list[dict[str, Any]]:
+def application_status(ipv4: str | None) -> list[dict[str, Any]]:
     version_file = Path("/srv/apps/homehub/deploy-state/current.json")
     app: dict[str, Any] = {
         "id": "homehub",
         "name": "HomeHub",
         "status": "healthy",
-        "url": "http://127.0.0.1:8088",
+        "url": f"http://{ipv4}:8088" if ipv4 else None,
     }
     if version_file.exists():
         try:
@@ -190,6 +190,7 @@ def operating_system_name() -> str:
 
 def build_snapshot() -> dict[str, Any]:
     disk = shutil.disk_usage("/")
+    ipv4 = primary_ipv4()
     services = [
         service_status(identifier, name, unit)
         for identifier, (name, unit) in DEFAULT_SERVICES.items()
@@ -209,10 +210,10 @@ def build_snapshot() -> dict[str, Any]:
             "memory": memory_status(),
             "disk": {"totalBytes": disk.total, "usedBytes": disk.used},
             "temperatureCelsius": temperature(),
-            "ipv4": primary_ipv4(),
+            "ipv4": ipv4,
         },
         "services": services,
-        "applications": application_status(),
+        "applications": application_status(ipv4),
     }
 
 
