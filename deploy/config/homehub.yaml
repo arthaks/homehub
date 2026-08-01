@@ -6,7 +6,7 @@ server:
 links:
   - id: mihomo
     name: Mihomo Dashboard
-    url: http://192.168.0.9:9090/ui/
+    url: http://192.168.0.15:9090/ui/
     category: infrastructure
     description: 代理节点和连接状态
   - id: github
