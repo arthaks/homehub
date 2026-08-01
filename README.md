@@ -71,7 +71,7 @@ uvicorn app.main:app --reload
 2. 安装并启用 `homehub-collector.service/.timer`；
 3. 将 `deploy/` 放到 `/srv/apps/homehub/`；
 4. 使用精确 GHCR SHA 镜像启动 Compose；
-5. UFW 只允许 `192.168.0.0/24` 通过 `wlp8s0b1` 访问 TCP 8088；
+5. Compose 将 HomeHub 发布到宿主机 TCP 8088，UFW 只允许 `192.168.0.0/24` 通过家庭网络接口访问；
 6. 验证容器健康、快照新鲜度和服务器重启恢复。
 
 当前仓库先完成、测试并发布软件；服务器正式部署在 GHCR 镜像产生后执行。
